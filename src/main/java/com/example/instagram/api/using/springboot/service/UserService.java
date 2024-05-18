@@ -21,7 +21,7 @@ public interface UserService{
 
     String followUser(Integer reqUserId, Integer followUserId) throws UserException;
 
-    String unfollowUser(Integer id, Integer unfollowUserId);
+    String unfollowUser(Integer id, Integer unfollowUserId) throws UserException;
 
     User createUserById(UserDto userDto);
 }

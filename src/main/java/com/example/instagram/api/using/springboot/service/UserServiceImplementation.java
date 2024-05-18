@@ -205,8 +205,33 @@ public class UserServiceImplementation implements UserService{
     }
   //TODO
     @Override
-    public String unfollowUser(Integer id, Integer unfollowUserId) {
-        return null;
+    public String unfollowUser(Integer reqUserId, Integer unfollowUserId) throws UserException{
+        User unfollowUser=findUserById(unfollowUserId);
+        System.out.println("unfollow user---"+unfollowUser.toString());
+        System.out.println("unfollow user's follower"+unfollowUser.getFollower().toString());
+
+        User reqUser=findUserById(reqUserId);
+        UserDto unfollow=new UserDto();
+        unfollow.setEmail(reqUser.getEmail());
+        unfollow.setUsername(reqUser.getUsername());
+        unfollow.setId(reqUser.getId());
+        unfollow.setName(reqUser.getName());
+        unfollow.setUserImage(reqUser.getImage());
+
+        UserDto following= new UserDto();
+        following.setEmail(unfollowUser.getEmail());
+        following.setUsername(unfollowUser.getUsername());
+        following.setId(unfollowUser.getId());
+        following.setName(unfollowUser.getName());
+        following.setUserImage(unfollowUser.getImage());
+
+        unfollowUser.getFollower().remove(unfollow);
+        reqUser.getFollowing().remove(following);
+        repo.save(reqUser);
+        repo.save(unfollowUser);
+
+        return "you have unfollowed "+unfollowUser.getUsername();
+
     }
     //TODO
     /*
