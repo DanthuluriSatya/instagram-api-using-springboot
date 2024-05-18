@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Integer> {
 
     public Optional<User> findByEmail(String email);
-
+//vvvv
     public Optional<User> findByUsername(String username);
      //SELECT u FROM User u WHERE u.id IN :users
     // select * from user where username in('avc','bbb')

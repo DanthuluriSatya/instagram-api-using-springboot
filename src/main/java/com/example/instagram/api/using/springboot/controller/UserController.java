@@ -34,6 +34,7 @@ public class UserController {
         User user=userService.findUserById(id);
         return new ResponseEntity<User>(user,HttpStatus.OK);
     }
+    // comment
     @GetMapping("username/{username}")
     public ResponseEntity<User> findByUsernameHandler(@PathVariable("username") String username) throws UserException{
         User user=userService.findUserByUsername(username);
